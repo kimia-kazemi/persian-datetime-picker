@@ -934,7 +934,7 @@ class _MonthItemState extends State<_MonthItem> {
           alignment: AlignmentDirectional.centerStart,
           child: ExcludeSemantics(
             child: Text(
-              widget.displayedMonth.formatMonthYear(),
+              widget.displayedMonth.formatMonthYearName(),
               style: textTheme.bodyText2!
                   .apply(color: themeData.colorScheme.onSurface),
             ),

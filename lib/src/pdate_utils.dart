@@ -171,7 +171,7 @@ String formatRangeEndDate(MaterialLocalizations localizations,
               startDate.year == endDate.year &&
               startDate.year == currentDate!.year)
           ? endDate.formatShortMonthDay()
-          : endDate.formatShortDate();
+          : endDate.formatShortMonthDay();
 }
 
 String formatDecimal(int number) {
@@ -192,7 +192,7 @@ String formatYear(Jalali date) {
 }
 
 String formatMonthYear(Jalali date) {
-  return '${date.formatter.mm} ${date.formatter.yy}';
+  return '${date.formatter.mN} ${date.formatter.yyyy}';
 }
 
 String formatFullDate(Jalali date) {
@@ -310,9 +310,14 @@ extension JalaliExt on Jalali {
     return '${f.yyyy}/${f.mm}';
   }
 
+  String formatMonthYearName() {
+    final f = formatter;
+    return '${f.yyyy} - ${f.mN}';
+  }
+
   String formatShortMonthDay() {
     final f = formatter;
-    return '${f.dd} ${f.mN}';
+    return '${f.wN}, ${f.dd} ${f.mN} ${f.yy}';
   }
 }
 
@@ -321,5 +326,3 @@ extension DateTimeExt on DateTime {
     return Jalali.fromDateTime(this);
   }
 }
-
-
