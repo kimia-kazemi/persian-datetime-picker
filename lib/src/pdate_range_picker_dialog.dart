@@ -115,12 +115,12 @@ Future<JalaliRange?> showPersianDateRangePicker({
 }) async {
   assert(context != null);
   assert(
-    initialDateRange == null || (initialDateRange.start != null && initialDateRange.end != null),
-    'initialDateRange must be null or have non-null start and end dates.',
+  initialDateRange == null || (initialDateRange.start != null && initialDateRange.end != null),
+  'initialDateRange must be null or have non-null start and end dates.',
   );
   assert(
-    initialDateRange == null || !initialDateRange.start.isAfter(initialDateRange.end),
-    "initialDateRange's start date must not be after it's end date.",
+  initialDateRange == null || !initialDateRange.start.isAfter(initialDateRange.end),
+  "initialDateRange's start date must not be after it's end date.",
   );
   initialDateRange = initialDateRange == null ? null : initialDateRange;
   assert(firstDate != null);
@@ -128,24 +128,24 @@ Future<JalaliRange?> showPersianDateRangePicker({
   assert(lastDate != null);
   lastDate = lastDate;
   assert(
-    !lastDate.isBefore(firstDate),
-    'lastDate $lastDate must be on or after firstDate $firstDate.',
+  !lastDate.isBefore(firstDate),
+  'lastDate $lastDate must be on or after firstDate $firstDate.',
   );
   assert(
-    initialDateRange == null || !initialDateRange.start.isBefore(firstDate),
-    "initialDateRange's start date must be on or after firstDate $firstDate.",
+  initialDateRange == null || !initialDateRange.start.isBefore(firstDate),
+  "initialDateRange's start date must be on or after firstDate $firstDate.",
   );
   assert(
-    initialDateRange == null || !initialDateRange.end.isBefore(firstDate),
-    "initialDateRange's end date must be on or after firstDate $firstDate.",
+  initialDateRange == null || !initialDateRange.end.isBefore(firstDate),
+  "initialDateRange's end date must be on or after firstDate $firstDate.",
   );
   assert(
-    initialDateRange == null || !initialDateRange.start.isAfter(lastDate),
-    "initialDateRange's start date must be on or before lastDate $lastDate.",
+  initialDateRange == null || !initialDateRange.start.isAfter(lastDate),
+  "initialDateRange's start date must be on or before lastDate $lastDate.",
   );
   assert(
-    initialDateRange == null || !initialDateRange.end.isAfter(lastDate),
-    "initialDateRange's end date must be on or before lastDate $lastDate.",
+  initialDateRange == null || !initialDateRange.end.isAfter(lastDate),
+  "initialDateRange's end date must be on or before lastDate $lastDate.",
   );
   currentDate = currentDate ?? Jalali.now();
   assert(initialEntryMode != null);
@@ -283,7 +283,10 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
     print("${Jalali.now()}");
     print("$_selectedStart");
     if (_selectedStart == Jalali.now() &&
-        _selectedStartTime!.round() <= DateTime.now().add(const Duration(hours: 4)).hour) {
+        _selectedStartTime!.round() <= DateTime
+            .now()
+            .add(const Duration(hours: 4))
+            .hour) {
       showDialog(
           context: context,
           barrierDismissible: false, // user must tap button!
@@ -294,15 +297,25 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
-                    Icons.access_time,
+                    const IconData(0xe816, fontFamily: 'MyIcons'),
                     size: 98,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    color: Theme
+                        .of(context)
+                        .colorScheme
+                        .onSurfaceVariant,
                   ),
                   const SizedBox(height: 40),
                   Text(
                     'ساعت تحویل خودرو باید چهار ساعت از زمان جاری جلوتر باشد',
                     style:
-                        Theme.of(context).textTheme.bodyLarge!.apply(color: Theme.of(context).colorScheme.onBackground),
+                    Theme
+                        .of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .apply(color: Theme
+                        .of(context)
+                        .colorScheme
+                        .onBackground),
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
@@ -310,13 +323,21 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
                       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
                       elevation: 0,
-                      primary: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                      primary: Theme
+                          .of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.1),
                     ),
                     child: Text('باشه',
-                        style: Theme.of(context)
+                        style: Theme
+                            .of(context)
                             .textTheme
                             .titleMedium!
-                            .apply(color: Theme.of(context).colorScheme.primary)),
+                            .apply(color: Theme
+                            .of(context)
+                            .colorScheme
+                            .primary)),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -329,9 +350,9 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
     } else {
       final JalaliRange? selectedRange = _hasSelectedDateRange
           ? JalaliRange(
-              start:
-                  Jalali(_selectedStart!.year, _selectedStart!.month, _selectedStart!.day, _selectedStartTime!.round()),
-              end: Jalali(_selectedEnd!.year, _selectedEnd!.month, _selectedEnd!.day, _selectedEndTime!.round()))
+          start:
+          Jalali(_selectedStart!.year, _selectedStart!.month, _selectedStart!.day, _selectedStartTime!.round()),
+          end: Jalali(_selectedEnd!.year, _selectedEnd!.month, _selectedEnd!.day, _selectedEndTime!.round()))
           : null;
       //todo add time to selectedRange
       print("return:: $selectedRange");
@@ -352,7 +373,7 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
           break;
 
         case PDatePickerEntryMode.input:
-          // If invalid range (start after end), then just use the start date
+        // If invalid range (start after end), then just use the start date
           if (_selectedStart != null && _selectedEnd != null && _selectedStart!.isAfter(_selectedEnd!)) {
             _selectedEnd = null;
           }
@@ -463,7 +484,9 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
           cancelText: widget.cancelText ?? 'لغو',
           helpText: widget.helpText ?? 'انتخاب تاریخ',
         );
-        final DialogTheme dialogTheme = Theme.of(context).dialogTheme;
+        final DialogTheme dialogTheme = Theme
+            .of(context)
+            .dialogTheme;
         size = orientation == Orientation.portrait ? _inputPortraitDialogSize : _inputLandscapeDialogSize;
         insetPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0);
         shape = dialogTheme.shape;
@@ -561,21 +584,23 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
-    final Orientation orientation = MediaQuery.of(context).orientation;
+    final Orientation orientation = MediaQuery
+        .of(context)
+        .orientation;
     final TextTheme textTheme = theme.textTheme;
     final Color headerForeground = colorScheme.onBackground;
     final Color headerDisabledForeground = headerForeground.withOpacity(0.38);
     final String startDateText =
-        utils.formatRangeStartDate(localizations, widget.selectedStartDate, widget.selectedEndDate);
+    utils.formatRangeStartDate(localizations, widget.selectedStartDate, widget.selectedEndDate);
     final String endDateText =
-        utils.formatRangeEndDate(localizations, widget.selectedStartDate, widget.selectedEndDate, Jalali.now());
+    utils.formatRangeEndDate(localizations, widget.selectedStartDate, widget.selectedEndDate, Jalali.now());
     final TextStyle? headlineStyle = textTheme.bodyMedium;
     final TextStyle? startDateStyle =
-        headlineStyle?.apply(color: widget.selectedStartDate != null ? headerForeground : headerDisabledForeground);
+    headlineStyle?.apply(color: widget.selectedStartDate != null ? headerForeground : headerDisabledForeground);
     final TextStyle? endDateStyle =
-        headlineStyle?.apply(color: widget.selectedEndDate != null ? headerForeground : headerDisabledForeground);
+    headlineStyle?.apply(color: widget.selectedEndDate != null ? headerForeground : headerDisabledForeground);
     final TextStyle saveButtonStyle =
-        textTheme.button!.apply(color: widget.onConfirm != null ? headerForeground : headerDisabledForeground);
+    textTheme.button!.apply(color: widget.onConfirm != null ? headerForeground : headerDisabledForeground);
     final TextStyle titleTextStyle = textTheme.bodyLarge!.apply(color: colorScheme.onBackground);
     final TextStyle clearButtonStyle = textTheme.labelLarge!
         .apply(color: widget.onConfirm != null ? colorScheme.primary : colorScheme.primary.withOpacity(0.5));
@@ -585,7 +610,7 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
     final IconButton entryModeIcon = IconButton(
       padding: EdgeInsets.zero,
       color: headerForeground,
-      icon: const Icon(Icons.edit),
+      icon: const Icon(IconData(0xe830, fontFamily: 'MyIcons')),
       tooltip: 'ورود تاریخ',
       onPressed: widget.onToggleEntryMode,
     );
@@ -597,8 +622,14 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: colorScheme.background,
-          leading: CloseButton(
+          // leading: CloseButton(
+          //   color: colorScheme.onBackground,
+          //   onPressed: widget.onCancel,
+          // ),
+          leading: IconButton(
+            icon: const Icon(IconData(0xe8c1, fontFamily: 'MyIcons')),
             color: colorScheme.onBackground,
+            tooltip: "بستن پنجره",
             onPressed: widget.onCancel,
           ),
           title: Text(widget.helpText, style: titleTextStyle),
@@ -634,19 +665,19 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
                     children: <Widget>[
                       Text(
                         "$startDateText\n"
-                        "${_valueSliderPickUp.round()}:00",
+                            "${_valueSliderPickUp.round()}:00",
                         style: startDateStyle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Icon(
-                        Icons.arrow_forward_rounded,
+                        const IconData(0xe806, fontFamily: 'MyIcons'),
                         size: 18,
                         color: colorScheme.onSurface,
                       ),
                       Text(
                         "$endDateText\n"
-                        "${_valueSliderDropOff.round()}:00",
+                            "${_valueSliderDropOff.round()}:00",
                         style: endDateStyle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -676,10 +707,16 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
             Container(
               padding: EdgeInsets.symmetric(horizontal: 26, vertical: 20),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .background,
                 boxShadow: [
                   BoxShadow(
-                    color: Theme.of(context).shadowColor.withOpacity(0.25),
+                    color: Theme
+                        .of(context)
+                        .shadowColor
+                        .withOpacity(0.25),
                     spreadRadius: 0,
                     blurRadius: 3,
                   ),
@@ -699,10 +736,19 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
                         child: Center(
                           child: SliderTheme(
                             data: SliderTheme.of(context).copyWith(
-                              activeTrackColor: Theme.of(context).colorScheme.primary,
-                              inactiveTrackColor: Theme.of(context).colorScheme.surface,
+                              activeTrackColor: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .primary,
+                              inactiveTrackColor: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .surface,
                               trackHeight: 4.0,
-                              thumbColor: Theme.of(context).colorScheme.onPrimary,
+                              thumbColor: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .onPrimary,
                               thumbShape: const CustomSliderThumbRect(
                                 thumbRadius: 48 * 0.4,
                                 thumbHeight: 48,
@@ -741,10 +787,19 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
                         child: Center(
                           child: SliderTheme(
                             data: SliderTheme.of(context).copyWith(
-                              activeTrackColor: Theme.of(context).colorScheme.primary,
-                              inactiveTrackColor: Theme.of(context).colorScheme.surface,
+                              activeTrackColor: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .primary,
+                              inactiveTrackColor: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .surface,
                               trackHeight: 4.0,
-                              thumbColor: Theme.of(context).colorScheme.onPrimary,
+                              thumbColor: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .onPrimary,
                               thumbShape: const CustomSliderThumbRect(
                                 thumbRadius: 48 * 0.4,
                                 thumbHeight: 48,
@@ -777,10 +832,16 @@ class _CalendarRangePickerDialogState extends State<_CalendarRangePickerDialog> 
                     height: 38,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).colorScheme.primary,
+                        primary: Theme
+                            .of(context)
+                            .colorScheme
+                            .primary,
                         // minimumSize: Size(334, 52),
                         elevation: 0,
-                        textStyle: Theme.of(context).textTheme.titleMedium,
+                        textStyle: Theme
+                            .of(context)
+                            .textTheme
+                            .titleMedium,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                         ),
@@ -843,7 +904,9 @@ class _PInputDateRangePickerDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
-    final Orientation orientation = MediaQuery.of(context).orientation;
+    final Orientation orientation = MediaQuery
+        .of(context)
+        .orientation;
     final TextTheme textTheme = theme.textTheme;
 
     final Color dateColor = colorScheme.brightness == Brightness.light ? colorScheme.onPrimary : colorScheme.onSurface;
