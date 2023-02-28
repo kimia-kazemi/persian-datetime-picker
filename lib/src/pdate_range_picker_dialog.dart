@@ -280,8 +280,6 @@ class _DateRangePickerDialogState extends State<_DateRangePickerDialog> {
         return;
       }
     }
-    print("${Jalali.now()}");
-    print("$_selectedStart");
     if (_selectedStart == Jalali.now() &&
         _selectedStartTime!.round() <= DateTime
             .now()
