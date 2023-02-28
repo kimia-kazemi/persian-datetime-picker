@@ -323,6 +323,7 @@ extension JalaliExt on Jalali {
 
 extension DateTimeExt on DateTime {
   Jalali toJalali() {
-    return Jalali.fromDateTime(this);
+    var j = Jalali.fromDateTime(this);
+    return Jalali(j.year,j.month,j.day,this.hour,this.minute,this.second);
   }
 }
